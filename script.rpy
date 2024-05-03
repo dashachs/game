@@ -14,6 +14,11 @@ init:
         yalign 1.0
 
 init:
+    transform middle:
+        xalign 0.5
+        yalign 0.5
+
+init:
     transform midright:
         xalign 0.80
         yalign 1.0
@@ -67,23 +72,15 @@ label start:
 
     # These display lines of dialogue.
  
-    fle "Hi Bapusya"
+    "/типа общаются/"
 
-    bap "H-Hi..."
+    fle "Bye Bapusya"
+
+    bap "{i}Oh.{/i} B-Bye..."
     
     hide fle
     
-    bap "/sigh/ He left... \nShould I go too?"
-
-    # hide bap
-    # show bap at midright:
-    #     flip
-
-    # bap "/leaves/" 
-    
-    # hide bap
-
-    # This ends the game.
+    bap "{i}/sighs/{/i} He left... \nShould I go too?"
 
     label the_question: 
         e "Should I {i}leave{/i} or should I {i}stay{/i}?"
@@ -91,24 +88,43 @@ label start:
         show bap at left with move:
             flip
 
-        menu:                                               #SCREEN 3
+        menu:
             "Stay":           
-                show bap at midright with move:  #SCREEN 4-1
-                    flipback
-                # $ animal = 'fox'
-                bap "{i}/sigh/{/i}Okay, maybe I should wait..."
-            "Leave":                                 #Stay
-                # hide bap                   #SCREEN 4-1
-                # $ animal = 'dog'
+                show bap at midleft with move  #SCREEN 4-1
+                bap "{i}/sighs/{/i} Okay, maybe I should wait..."
+                call ebir_comes
+            "Leave":
                 show bap at left with ease:  #SCREEN 4-1
                     flipback
                 bap "Yeah, I guess I'll leave..."
-                # hide bap with move
                 hide bap 
                 # bap "{b}Yeah{/b}, because I am... {color=#808080}always... {size=-5}sleepy...{/size}{/color}"
-            "[repeat_question] Could you repeat the question?": #SCREEN 4-3
+            "[repeat_question] Could you repeat the question?":
                 jump the_question
         jump end
+
+label ebir_comes:
+    show vi at midright
+    vi "Hey there. I'm Vi, short for Viebal. Are you alone here?"
+    show bap at left with move
+    show vi at right with move
+    menu:
+        "Yeah, I am. My name is Bapusya, nice to meet you, Vi.":           
+            show bap happy at midleft with move
+            show vi at midright with move
+            bap "Yeah, I am. My name is Bapusya, nice to meet you, Vi."
+            show vi smirk at midright
+            vi "Nice to meet you, Bapusya."
+            show 18 at middle 
+        "{i}/shrugs/{/i} I'm waiting for someone, sorry.":
+            show bap at left with ease:  #SCREEN 4-1
+                flipback
+            bap "{i}/shrugs/{/i} I'm waiting for someone, sorry."
+            vi "Oh, okay."
+            hide bap 
+            vi "{i}¯\_(-.-)_/¯{/i} Better luck next time."
+    jump end
+
 
 label question_selector:
     $ NumberGenerator = renpy.random.randint(1, 3)
@@ -122,10 +138,7 @@ label question_selector:
     $ question_tally += 1
     return
 
-label end:                                                  #SCREEN 5
-    # play music "audio/renpyallstars.ogg"
-    # scene concert1 with vpunch:                             #new scene
-    #     zoom 0.55
+label end:
     "The End!"
     return
 
