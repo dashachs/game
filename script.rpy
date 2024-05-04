@@ -23,6 +23,11 @@ init:
         xalign 0.80
         yalign 1.0
 
+init:
+    transform bigger:
+        xzoom 1.5
+        yzoom 1.5
+
 # init:
     # transform walk(start, end, tall):
     #     xpos start ypos 0 xanchor 0.5 yanchor 0
@@ -30,6 +35,8 @@ init:
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+
+image halfblack = "#00000088" #hope this is half transparent (haven't tested)
 
 init python:
     class Colors:
@@ -65,13 +72,41 @@ label start:
     # images directory to show it.
 
     scene bg rainbow
+    label mainmenu:
+        menu:
+            "Бедосяфон":
+                jump bdsphone
+            "Болталовка":
+                jump talk
+            "Вступление":
+                jump beginning
 
+                
+label bdsphone:
+    scene dock1 with pixellate  
+
+    pause 1
+    show halfblack with dissolve
+    pause 0.5
+    show phone at middle with dissolve:
+        bigger
+
+    pause 
+    # hide phone
+    show phone angry at middle:
+        bigger
+    pause
+    jump end
+
+
+label talk:
+    scene dock1
     show bap at midright
     show fle at midleft:
         flip
 
     # These display lines of dialogue.
- 
+
     "/типа общаются/"
 
     fle "Bye Bapusya"
