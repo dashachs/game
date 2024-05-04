@@ -40,10 +40,18 @@ init:
         yalign 0.9
 
     transform arroww:
-        xzoom 0.75
-        yzoom 0.75
-        xalign 0.85
+        xzoom 0.25
+        yzoom 0.25
+        xalign 0.95
         yalign 0.9
+
+init python:
+    renpy.add_layer("arrowlayer", above="overlay") # this is a new function in 6.99.8 that allows us to add new layers in a much simpler manner
+
+# image arrowpic = "images/arrow.png"
+
+screen test():
+    image "images/arrow.png" at arroww
 
 define slowdissolve = Dissolve(3)
 # init:
@@ -111,7 +119,8 @@ label start:
 label beginning:
     play music circus 
     scene full_white with pixellate
-    # show 18 at forarrow
+    show screen test(_layer="arrowlayer") # shows screen on layer bglayer
+    $ renpy.show_screen("test", _layer="arrowlayer")
     # pause
 
     label first_dialogue:
