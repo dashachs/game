@@ -28,6 +28,11 @@ init:
         xzoom 1.5
         yzoom 1.5
 
+init:
+    transform abitbigger:
+        xzoom 1.25
+        yzoom 1.25
+
 # init:
     # transform walk(start, end, tall):
     #     xpos start ypos 0 xanchor 0.5 yanchor 0
@@ -36,7 +41,8 @@ init:
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-image halfblack = "#00000088" #hope this is half transparent (haven't tested)
+image dimmed = "#00000088" #hope this is half transparent (haven't tested)
+image full_black = "#000000ff" #hope this is half transparent (haven't tested)
 
 init python:
     class Colors:
@@ -71,8 +77,9 @@ label start:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg rainbow
+    
     label mainmenu:
+        scene bg rainbow with pixellate  
         menu:
             "Бедосяфон":
                 jump bdsphone
@@ -81,21 +88,70 @@ label start:
             "Вступление":
                 jump beginning
 
+
+label beginning:
+    scene dock1 with pixellate  
+    jump end
+
                 
 label bdsphone:
     scene dock1 with pixellate  
 
     pause 1
-    show halfblack with dissolve
+    show dimmed with dissolve
     pause 0.5
     show phone at middle with dissolve:
-        bigger
+        abitbigger
 
-    pause 
-    # hide phone
-    show phone angry at middle:
-        bigger
-    pause
+    $ bds_counter = 0
+
+    label bdsturnon:
+        menu:
+            "Попробовать включить телефон":
+                if renpy.random.choice((1, 2, 3)) == 3:
+                # hide phone
+                    play music "audio/aggressive-trailer.mp3"
+                    $ bds_counter += 1
+                    show phone angry at middle:
+                        abitbigger
+                    pause 3.0
+                    # show full_black with dissolve
+
+                    stop music fadeout 1.5
+                    pause 3.0
+                    show phone at middle with dissolve:
+                        abitbigger
+                    if bds_counter >= 2:
+                        jump bdsturnoff
+                    else:
+                        jump bdsturnon
+                else:
+                    jump bdsturnon
+        jump end
+
+label bdsturnoff:
+    menu:
+        "Попробовать включить телефон":
+            if renpy.random.choice((1, 2, 3)) == 3:
+            # hide phone
+                play music "audio/aggressive-trailer.mp3"
+                $ bds_counter += 1
+                show phone angry at middle:
+                    abitbigger
+                pause 3.0
+                # show full_black with dissolve
+
+                stop music fadeout 1.5
+                pause 1.0
+                show phone at middle:
+                    abitbigger
+                jump bdsturnoff
+            else:
+                jump bdsturnoff
+        "Убрать телефон":
+            # "bdsya" "Слабак (ฅ⁠^⁠•⁠ﻌ⁠•⁠^⁠ฅ)" with de
+            jump mainmenu
+            
     jump end
 
 
