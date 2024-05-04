@@ -68,14 +68,13 @@ define vi = Character("/выебал/", color=col.vi)
 define pr = Character("Пронзатор", color=col.pr)
 define me = Character("", color=col.me)
 
-define vjb_flag = False
-
 # The game starts here.
 define e = Character("scolar", color="#F86983")
 default question_tally = 0       
 
 
 label start:
+    $ vjb_flag = False
     python:
         _preferences.set_volume('music', 0.3)
         renpy.restart_interaction()
@@ -137,9 +136,10 @@ label beginning:
             "Сколько бы я ни пытался его включить, он совсем не реагирует."
             me "Сломался что ли?"
             me "Так. Окей. Не будем отчаиваться."
+            # pause
             hide phone with dissolve
             hide dimmed with dissolve
-            "По крайней мере я могу попытаться выяснить, где я нахожусь. И, прямо как в \"Мальчишнике в Вегасе\", восстановить цепочку событий.{nw}"
+            "По крайней мере я могу попытаться выяснить, где я нахожусь. И, прямо как в \"Мальчишнике в Вегасе\", восстановить цепочку событий."
 
             scene dock1 with dissolve
 
@@ -151,15 +151,17 @@ label beginning:
             me "Сейчас посмотрим, где я. Может, хотя бы так я что-нибудь вспомню."
 
             scene board1 with pixellate
+            pause 2.0
 
             me "Что тут у нас… Хмм. ВЖБ?"
 
             label vjb:
-                " {fast}"
-                "Звучит достаточно интересно.":
-                    vjb_flag = True
-                "Просто какой-то бред":
-                    vjb_flag = False
+                menu:
+                    " {fast}"
+                    "Звучит достаточно интересно.":
+                        $ vjb_flag = True
+                    "Просто какой-то бред":
+                        $ vjb_flag = False
                 jump after_vjb
 
             label after_vjb:
@@ -178,10 +180,24 @@ label beginning:
             me "Эй!!! Тут вообще есть кто-нибудь?!"
             me "ХОТЬ КТО-ТО?!"
 
-            
+            show fle shad at center with fade
+
+            fle "Чего орешь?"
+            fle "Стой-ка! Кажется, я раньше тебя не видел."
+
+            "Я так сильно удивляюсь тому, что за спиной внезапно звучит чей-то голос, что нелепо от него шарахаюсь."
+
+            fle "Тише-тише, приятель! Нечего так пугаться. Что ты тут забыл в такую рань? Или ты из сибирских?"
+            me "Что? В каком смысле из сибирских?"  
+            fle "Ой, не бери в голову. Обычно местные зовут меня Флешмобщиком." 
+
+            show fle w with dissolve
+
+            "Флешмобщик крепит на доску объявлений какую-то бумажку, пока я все еще удивленно на него пялюсь."
 
 
-        
+
+
 
 
     jump end
