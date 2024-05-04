@@ -31,6 +31,20 @@ init:
         xzoom 1.25
         yzoom 1.25
 
+    transform abitsmaller:
+        xzoom 0.75
+        yzoom 0.75
+
+    transform forarrow:
+        xalign 0.85
+        yalign 0.9
+
+    transform arroww:
+        xzoom 0.75
+        yzoom 0.75
+        xalign 0.85
+        yalign 0.9
+
 define slowdissolve = Dissolve(3)
 # init:
     # transform walk(start, end, tall):
@@ -97,6 +111,7 @@ label start:
 label beginning:
     play music circus 
     scene full_white with pixellate
+    # show 18 at forarrow
     # pause
 
     label first_dialogue:
@@ -151,7 +166,7 @@ label beginning:
             me "Сейчас посмотрим, где я. Может, хотя бы так я что-нибудь вспомню."
 
             scene board1 with pixellate
-            pause 2.0
+            pause # 2.0
 
             me "Что тут у нас… Хмм. ВЖБ?"
 
@@ -159,8 +174,10 @@ label beginning:
                 menu:
                     " {fast}"
                     "Звучит достаточно интересно.":
+                        me "Интересно хуесно"
                         $ vjb_flag = True
                     "Просто какой-то бред":
+                        me "Хуйня какая-то"
                         $ vjb_flag = False
                 jump after_vjb
 
@@ -180,7 +197,10 @@ label beginning:
             me "Эй!!! Тут вообще есть кто-нибудь?!"
             me "ХОТЬ КТО-ТО?!"
 
-            show fle shad at center with fade
+            show fle shad at center with dissolve:
+                abitbigger
+
+            $ fle.name = "???"
 
             fle "Чего орешь?"
             fle "Стой-ка! Кажется, я раньше тебя не видел."
@@ -189,9 +209,13 @@ label beginning:
 
             fle "Тише-тише, приятель! Нечего так пугаться. Что ты тут забыл в такую рань? Или ты из сибирских?"
             me "Что? В каком смысле из сибирских?"  
+
+            $ fle.name = "Флэшмобщик"
+
             fle "Ой, не бери в голову. Обычно местные зовут меня Флешмобщиком." 
 
-            show fle w with dissolve
+            show fle w with dissolve:
+                abitbigger
 
             "Флешмобщик крепит на доску объявлений какую-то бумажку, пока я все еще удивленно на него пялюсь."
 
