@@ -117,7 +117,7 @@ label start:
 
 
 label beginning:
-    play music circus 
+    play music seabird 
     scene full_white with pixellate
     show screen test(_layer="arrowlayer") # shows screen on layer bglayer
     $ renpy.show_screen("test", _layer="arrowlayer")
@@ -229,13 +229,9 @@ label beginning:
             "Флешмобщик крепит на доску объявлений какую-то бумажку, пока я все еще удивленно на него пялюсь."
 
 
-
-
-
-
     jump end
 
-                
+
 label bdsphone:
     # scene dock1 with pixellate  
 
@@ -253,7 +249,7 @@ label bdsphone:
         menu:
             " {fast}"
             "Попробовать включить телефон":
-                play sound "audio/fart.mp3"
+                play sound "audio/meow.mp3"
                 if renpy.random.choice((1, 2, 3)) == 3:
                 # hide phone
                     $ bds_counter += 1
@@ -278,7 +274,7 @@ label bdsphone:
         menu:
             " {fast}"
             "Попробовать включить телефон":
-                play sound "audio/fart.mp3"
+                play sound "audio/meow.mp3"
                 if renpy.random.choice((1, 2, 3)) == 3:
                 # hide phone
                     $ bds_counter += 1
@@ -299,6 +295,70 @@ label bdsphone:
                 jump afterphone
                 
         jump afterphone
+                
+# label bdsphone:
+#     # scene dock1 with pixellate  
+
+#     pause 1
+#     show dimmed with dissolve
+#     pause 0.5
+#     show phone at upmiddle with dissolve:
+#         abitbigger
+
+#     $ bds_counter = 0
+
+#     me "Что это за знак такой?"
+
+#     label bdsturnon:
+#         menu:
+#             " {fast}"
+#             "Попробовать включить телефон":
+#                 play sound "audio/fart.mp3"
+#                 if renpy.random.choice((1, 2, 3)) == 3:
+#                 # hide phone
+#                     $ bds_counter += 1
+#                     show phone angry at upmiddle:
+#                         abitbigger
+#                     pause 1.0
+#                     # show full_black with dissolve
+
+#                     # stop sound fadeout 1.5
+#                     pause 1.5
+#                     show phone at upmiddle with dissolve:
+#                         abitbigger
+#                     if bds_counter >= 2:
+#                         jump bdsturnoff
+#                     else:
+#                         jump bdsturnon
+#                 else:
+#                     jump bdsturnon
+#         jump afterphone
+
+#     label bdsturnoff:
+#         menu:
+#             " {fast}"
+#             "Попробовать включить телефон":
+#                 play sound "audio/fart.mp3"
+#                 if renpy.random.choice((1, 2, 3)) == 3:
+#                 # hide phone
+#                     $ bds_counter += 1
+#                     show phone angry at upmiddle:
+#                         abitbigger
+#                     pause 1.0
+#                     # show full_black with dissolve
+
+#                     # stop music fadeout 1.5
+#                     pause 1.5
+#                     show phone at upmiddle:
+#                         abitbigger
+#                     jump bdsturnoff
+#                 else:
+#                     jump bdsturnoff
+#             "...":
+#                 # "bdsya" "Слабак (ฅ⁠^⁠•⁠ﻌ⁠•⁠^⁠ฅ)" with de
+#                 jump afterphone
+                
+#         jump afterphone
 
 
 label talk:
