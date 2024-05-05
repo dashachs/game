@@ -53,6 +53,8 @@ init python:
 screen test():
     image "images/arrow.png" at arroww
 
+define narrator = Character(None, what_italic=True)
+
 define slowdissolve = Dissolve(3)
 # init:
     # transform walk(start, end, tall):
@@ -439,4 +441,3 @@ label question_selector:
 label end:
     "The End!"
     return
-
