@@ -71,13 +71,15 @@ init python:
         vi = ""
         pr = ""
         me = ""
+        narrator = ""
 
         def __init__(self):
             self.bap = "#FF8BAF"
             self.fle = "#FFB06A"
             self.vi = "#6A91FF"
             self.pr = "#8569A9"
-            self.me = "#cccccc"
+            self.me = "#878787"
+            self.narrator = "#386B8B"
             # self.me = "#2f8b58"
 
 define col = Colors()
@@ -89,11 +91,12 @@ define fle = Character("Флэшмобщик", color=col.fle)
 define vi = Character("/выебал/", color=col.vi)
 define pr = Character("Пронзатор", color=col.pr)
 define me = Character("", color=col.me)
-define narrator = Character(None, what_italic=True)
+define narrator = Character(None, color=col.narrator, what_italic=True)
 
 # The game starts here.
 define e = Character("scolar", color="#F86983")
-default question_tally = 0       
+default question_tally = 0     
+define colorlike = "ff"  
 
 
 label start:
@@ -122,6 +125,8 @@ label start:
                 jump bdsphone
             "Болталовка":
                 jump talk
+            "Тест":
+                jump test
 
 
 label beginning:
@@ -151,7 +156,7 @@ label beginning:
         "Сперва это сильно меня пугает. Может быть меня огрели чем-нибудь по голове? Я спешно проверяю затылок, но следов травмы нет."
         "Нужно начать с чего-нибудь совсем простого. Например с имени. Да, точно. Начну с имени."
 
-        $ temp_name = renpy.input("Как меня зовут?..")
+        $ temp_name = renpy.input("Как меня зовут?..", length=32, exclude=" 0123456789+=,.?!<>{{}[[]")
         $ temp_name = temp_name.strip()
         if temp_name == "":
             $ temp_name = "Я"
@@ -265,7 +270,7 @@ label beginning:
         menu:
             me " {fast}"
             "Звучит круто.":
-                me "А зачем тогда ты мне его тогда рекламируешь?"
+                me "А зачем тогда ты мне его рекламируешь?"
                 $ fle_points -= 2
             "Да, ты прав, такое себе.":
                 me "Повезло, что я попал сюда. И встретил тебя."
@@ -339,7 +344,10 @@ label beginning:
         fle "Посмотрите-ка, а Геншин ты помнишь."
         fle "Если решишь остаться здесь, точно сойдёшь за своего."
         show fle w
-        "Слушай, а какой цвет тебе больше нравится? 
+        label test:
+        fle "Слушай, а какой цвет тебе больше нравится?"
+        $ temp_name = renpy.input(fle, "Слушай, а какой цвет тебе больше нравится?", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
+        fle "Окей, [temp_name]"
 
 
 
