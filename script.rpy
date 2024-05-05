@@ -45,13 +45,20 @@ init:
         xalign 0.95
         yalign 0.9
 
+    transform daleee:
+        # xzoom 0.25
+        # yzoom 0.25
+        xalign 0.78
+        yalign 0.95
+
 init python:
     renpy.add_layer("arrowlayer", above="overlay") # this is a new function in 6.99.8 that allows us to add new layers in a much simpler manner
 
 # image arrowpic = "images/arrow.png"
 
 screen test():
-    image "images/arrow.png" at arroww
+    # image "images/arrow.png" at arroww
+    image "images/dalee1.png" at daleee
 
 define slowdissolve = Dissolve(3)
 # init:
@@ -72,26 +79,28 @@ init python:
         pr = ""
         me = ""
         narrator = ""
+        speech = ""
 
         def __init__(self):
             self.bap = "#FF8BAF"
             self.fle = "#FFB06A"
             self.vi = "#6A91FF"
             self.pr = "#8569A9"
-            self.me = "#878787"
+            self.me = "#333333"
             self.narrator = "#386B8B"
+            self.speech = "#333333"
             # self.me = "#2f8b58"
 
 define col = Colors()
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-define bap = Character("Бапуся", color=col.bap)
-define fle = Character("Флэшмобщик", color=col.fle)
-define vi = Character("/выебал/", color=col.vi)
-define pr = Character("Пронзатор", color=col.pr)
-define me = Character("", color=col.me)
-define narrator = Character(None, color=col.narrator, what_italic=True)
+define bap = Character("Бапуся", what_color=col.speech, color=col.bap)
+define fle = Character("Флэшмобщик", what_color=col.speech, color=col.fle)
+define vi = Character("/выебал/", what_color=col.speech, color=col.vi)
+define pr = Character("Пронзатор", what_color=col.speech, color=col.pr)
+define me = Character("", what_color=col.speech, color=col.me)
+define narrator = Character(None, what_color=col.narrator, what_italic=True)
 
 # The game starts here.
 define e = Character("scolar", color="#F86983")
