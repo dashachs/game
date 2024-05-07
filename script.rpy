@@ -96,7 +96,7 @@ define col = Colors()
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 define bap = Character("Бапуся", what_color=col.speech, color=col.bap)
-define fle = Character("Флэшмобщик", what_color=col.speech, color=col.fle)
+define fle = Character("Флешмобщик", what_color=col.speech, color=col.fle)
 define vi = Character("/выебал/", what_color=col.speech, color=col.vi)
 define pr = Character("Пронзатор", what_color=col.speech, color=col.pr)
 define me = Character("", what_color=col.speech, color=col.me)
@@ -104,9 +104,9 @@ define narrator = Character(None, what_color=col.narrator, what_italic=True)
 
 # The game starts here.
 define e = Character("scolar", color="#F86983")
-default question_tally = 0     
-define colorlike = "ff"  
-
+default question_tally = 0   
+define good_colors = ["пизда", "хуй", "красный", "оранжевый", "желтый", "жёлтый", "зеленый", "лиловый", "розовый"]
+define bad_colors = ["синий", "фиолетовый", "серый", "чёрный", "черный"]
 
 label start:
     label variables:
@@ -241,7 +241,7 @@ label beginning:
         fle "Тише-тише, приятель! Нечего так пугаться. Что ты тут забыл в такую рань? Или ты из сибирских?"
         me "Что? В каком смысле из сибирских?"  
 
-        $ fle.name = "Флэшмобщик"
+        $ fle.name = "Флешмобщик"
 
         fle "Ой, не бери в голову. Обычно местные зовут меня Флешмобщиком." 
 
@@ -355,8 +355,22 @@ label beginning:
         show fle w
         label test:
         fle "Слушай, а какой цвет тебе больше нравится?"
-        $ temp_name = renpy.input(fle, "Слушай, а какой цвет тебе больше нравится?", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
-        fle "Окей, [temp_name]"
+        $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
+        label colorgrade:
+            if temp_name.strip().lower() in good_colors:
+                $ fle_points += 1
+                if temp_name.strip().lower() == "хуй" or temp_name.strip().lower() == "пизда":
+                    fle "Я тоже люблю бежевый."
+                fle "Good."
+            elif temp_name.strip().lower() in bad_colors:
+                $ fle_points -= 1
+                fle "Bad."
+            else:
+                $ fle_points -= 0
+                fle "Pohui."
+            # краснвй заикаишься чтоль?
+        # fle "Окей, [temp_name]"
+        
 
 
 
