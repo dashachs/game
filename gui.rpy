@@ -261,7 +261,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 25
+define gui.choice_spacing = 5
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6

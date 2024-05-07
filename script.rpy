@@ -99,7 +99,7 @@ define bap = Character("Бапуся", what_color=col.speech, color=col.bap)
 define fle = Character("Флешмобщик", what_color=col.speech, color=col.fle)
 define vi = Character("/выебал/", what_color=col.speech, color=col.vi)
 define pr = Character("Пронзатор", what_color=col.speech, color=col.pr)
-define me = Character("", what_color=col.speech, color=col.me)
+define me = Character("ГГ", what_color=col.speech, color=col.me)
 define narrator = Character(None, what_color=col.narrator, what_italic=True)
 
 # The game starts here.
@@ -390,9 +390,9 @@ label beginning:
         fle "Ничего страшного, мы сможем обменяться контактами позже. Или просто свяжись со мной во время радиоэфира."
         me "Договорились."
         me "Ну так что, отведешь меня к тому посту охраны?"
-        "Без лишних слов он берет меня за руку."
+        # "Без лишних слов он берет меня за руку."
         menu:
-            " {fast}"
+            "Без лишних слов он берет меня за руку.{fast}"
             "Крепче сжать его руку.":
                 # "Если я и захочу кем-то притворяться, я все равно должен знать, от чего отказываюсь."
                 $ fle_points += 4
