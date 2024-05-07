@@ -117,6 +117,31 @@ screen say(who, what):
         add SideImage() xalign 0.0 yalign 1.0
 
 
+
+screen myinput(prompt):
+    style_prefix "input"
+    window:
+        id "window"
+        if prompt[0]:
+            window:
+                style "namebox"
+                text prompt[0]:
+                    size gui.name_text_size
+                    font gui.name_text_font
+                    color prompt[1]
+                # text prompt[0] style "huypizda"
+                
+        vbox:
+            xanchor gui.dialogue_text_xalign
+            xpos gui.dialogue_xpos
+            xsize gui.dialogue_width
+            ypos gui.dialogue_ypos
+
+            text prompt[2] style "input_prompt"
+
+            # this field with this specific id is necessary for the custom input screen
+            input id "input"
+
 ## Make the namebox available for styling through the Character object.
 init python:
     config.character_id_prefixes.append('namebox')
@@ -137,6 +162,12 @@ style window:
     ysize gui.textbox_height
 
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+
+style huypizda:
+    size gui.name_text_size
+    font gui.name_text_font
+    color "#000000"
+
 
 style namebox:
     xpos gui.name_xpos
