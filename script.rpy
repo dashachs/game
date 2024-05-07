@@ -354,10 +354,10 @@ label beginning:
         fle "Если решишь остаться здесь, точно сойдёшь за своего."
         show fle w
         label test:
-        fle "Слушай, а какой цвет тебе больше нравится?" 
-        $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
+        # fle "Слушай, а какой цвет тебе больше нравится?" 
         # $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
-        $ temp_name = renpy.input([fle.name, col.fle, "What is your name?"], screen="myinput")
+        # $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
+        $ temp_name = renpy.input([fle.name, col.fle, "Слушай, а какой цвет тебе больше нравится?"], screen="myinput")
         label colorgrade:
             if temp_name.strip().lower() in good_colors:
                 $ fle_points += 1
