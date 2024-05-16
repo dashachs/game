@@ -211,13 +211,16 @@ define gui.quick_button_text_selected_color = gui.accent_color
 define gui.choice_button_width = 1185
 define gui.choice_button_height = None
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(150, 8, 150, 8)
+define gui.choice_button_borders = Borders(33, 8, 8, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
-define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#888888'
-define gui.choice_button_text_hover_color = "#ffffff"
+define gui.choice_button_text_xalign = 0.0
+define gui.choice_button_text_idle_color = "#386B8B"
+define gui.choice_button_text_hover_color = "#333333"
 define gui.choice_button_text_insensitive_color = '#8888887f'
+# define gui.choice_button_text_idle_color = '#888888'
+# define gui.choice_button_text_hover_color = "#ffffff"
+# define gui.choice_button_text_insensitive_color = '#8888887f'
 
 
 ## File Slot Buttons ###########################################################
@@ -261,7 +264,7 @@ define gui.skip_ypos = 15
 define gui.notify_ypos = 68
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 5
+define gui.choice_spacing = -7
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 6

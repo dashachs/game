@@ -19,6 +19,18 @@ init:
         xalign 0.5
         yalign 0.2
 
+    transform downmiddle:
+        xalign 0.5
+        yalign 0.7
+
+    transform flepocket:
+        xalign 0.55
+        yalign 0.7
+
+    transform mypocket:
+        xalign 0.15
+        yalign 1.5
+
     transform midright:
         xalign 0.80
         yalign 1.0
@@ -53,12 +65,17 @@ init:
 
 init python:
     renpy.add_layer("arrowlayer", above="overlay") # this is a new function in 6.99.8 that allows us to add new layers in a much simpler manner
+    renpy.add_layer("pinlayer", above="arrowlayer") # this is a new function in 6.99.8 that allows us to add new layers in a much simpler manner
 
 # image arrowpic = "images/arrow.png"
 
 screen test():
     # image "images/arrow.png" at arroww
     image "images/dalee1.png" at daleee
+
+screen test1():
+    # image "images/arrow.png" at arroww
+    image "images/items/pin.png" at upmiddle
 
 define slowdissolve = Dissolve(3)
 # init:
@@ -143,6 +160,8 @@ label beginning:
     scene full_white with pixellate
     show screen test(_layer="arrowlayer") # shows screen on layer bglayer
     $ renpy.show_screen("test", _layer="arrowlayer")
+    # show screen test1(_layer="pinlayer") # shows screen on layer bglayer
+    # $ renpy.show_screen("test1", _layer="pinlayer")
     # pause
 
     label first_dialogue:
@@ -264,7 +283,7 @@ label beginning:
         fle "Ух ты. Может, ты вчера перебрал, дружище?"
         me "Может быть. А может и нет. Тоже не знаю."
         me "И где мы находимся – тоже."
-        flew "Серьезно? Мы в порту города Флаймер!"
+        fle "Серьезно? Мы в порту города Флаймер!"
         show fle w
         fle "Это лучшее место в мире! Место, где найдётся кто угодно, готовый ответить на твои вопросы."
         fle "Тебе повезло, что ты попал сюда, а не в соседний город."
@@ -307,7 +326,7 @@ label beginning:
         fle "Или ты всегда такой горячий?"
         "Я смущённо смеюсь, и мы разнимаем руки. Кажется, он тот ещё шутник."
         show fle w
-        flew "Слушай, тебе повезло встретить именно меня, ведь я спасатель всех заблудших."
+        fle "Слушай, тебе повезло встретить именно меня, ведь я спасатель всех заблудших."
         me "А?"
         fle "Да шучу я. В общем, тебе лучше дойти до поста охраны."
         fle "Там работает такой смурной тип… Он мог что-нибудь видеть…"
@@ -316,7 +335,7 @@ label beginning:
         "От его улыбки исходит такое тепло, что сразу становилось понятно –"
         "Этот парень не сделает ничего плохого."
         "Он и правда спасает заблудшие души вроде моей."
-        fle "Слушай, me_name, больно было падать?"
+        fle "Слушай, [me.name], больно было падать?"
         me "А? Откуда?"
         fle "С небес. Ты же ангел, раз из ниоткуда тут без памяти оказался."
         menu:
@@ -401,6 +420,53 @@ label beginning:
                 $ fle_points -= 4
         hide fle with dissolve
 
+        scene guards1 with pixellate
+        pause
+        "Вдали маячит синий пост охраны и шлагбаум."
+        "Если память не врёт, я видел таких за всю жизнь сотню."
+        "Мы с Флешмобщиком останавливаемся неподалёку."
+        show fle w at center with dissolve:
+            abitbigger
+
+        fle "Здесь наши пути разойдутся."
+        "Он уже готовится уйти, как вдруг оборачивается и широко улыбается."
+        show fle whappy
+        fle "Но не навсегда."
+        fle "Вечером у Барби в баре будет вечеринка."
+        fle "Кен всех приглашал. Думаю, Барби не будет против, если придёт кто-то новенький."
+        fle "Залетай, если до того времени не найдёшь себя, [me.name]."
+        show fle w
+        fle "Ах, да, кстати."
+        "Он роется в карманах, словно пытается там что-то найти, затем он достает из кармана значок."
+        
+        pause 1
+        show dimmed with dissolve
+        # pause 0.5
+        # show pin at upmiddle with dissolve:
+        #     abitbigger
+        show pin with dissolve:
+            subpixel True
+            flepocket zoom 0.5
+            ease 1.5 upmiddle zoom 1.5
+
+        me "Это мне? Спасибо."
+        "Я неуверенно забираю значок себе и прячу его в карман."
+        # show screen test1(_layer="pinlayer") # shows screen on layer bglayer
+        # $ renpy.show_screen("test1", _layer="pinlayer")
+        show pin with dissolve:
+            # subpixel True
+            upmiddle 
+            ease 1.5 mypocket zoom 0.3
+        hide dimmed with dissolve
+        # hide pin
+        fle "Да, тебе. Я словно знал, что встречу сегодня кого-то особенного. Может быть мы с тобой настоящие соулмейты, а?"
+        fle "Ну, увидимся!"
+        "Он очень быстро уходит, словно не хочет сталкиваться с тем, кто может сидеть в этой будке.."
+        show fle w at offscreenleft with ease
+        hide fle
+        "Отчего-то мне становится тревожно. Я откашливаюсь в кулак и собираюсь постучать в дверь, как вдруг она внезапно открывается сама, а на пороге возникает…"
+
+
 
 
 
@@ -479,7 +545,9 @@ label bdsphone:
                 jump afterphone
                 
         jump afterphone
-                
+
+label musor:
+
 # label bdsphone:
 #     # scene dock1 with pixellate  
 
@@ -543,6 +611,7 @@ label bdsphone:
 #                 jump afterphone
                 
 #         jump afterphone
+    jump end
 
 
 label talk:
