@@ -204,6 +204,8 @@ label beginning:
             if temp_name.lower() == "коля":
                 $ whats_my_name = "Да нет, не Коля... Э-э-э, меня звали..." 
                 jump name
+            if temp_name.lower() in smartass_answers:
+                "Родители, конечно, молодцы..."
 
         $ me.name = temp_name
         # me "Ну, хорошо хоть имя свое не забыл. Больше ничего и не помню. А дальше-то что делать? (тут имя для примера, как будет выглядеть)"
