@@ -16,6 +16,7 @@ style default:
 style input:
     properties gui.text_properties("input", accent=True)
     adjust_spacing False
+    color "#895FC8" #add this line
 
 style hyperlink_text:
     properties gui.text_properties("hyperlink", accent=True)
@@ -129,7 +130,6 @@ screen myinput(prompt):
                     size gui.name_text_size
                     font gui.name_text_font
                     color prompt[1]
-                # text prompt[0] style "huypizda"
                 
         vbox:
             xanchor gui.dialogue_text_xalign

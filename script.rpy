@@ -125,8 +125,9 @@ define narrator = Character(None, what_color=col.narrator, what_italic=True)
 # The game starts here.
 define e = Character("scolar", color="#F86983")
 default question_tally = 0   
-define good_colors = ["пизда", "хуй", "красный", "оранжевый", "желтый", "жёлтый", "зеленый", "лиловый", "розовый"]
+define good_colors = ["пизда", "хуй", "пенис", "красный", "оранжевый", "желтый", "жёлтый", "зеленый", "лиловый", "розовый"]
 define bad_colors = ["синий", "фиолетовый", "серый", "чёрный", "черный"]
+define typo_colors = ["краснвй"]
 
 label start:
     label variables:
@@ -143,25 +144,25 @@ label start:
     python:
         _preferences.set_volume('music', 0.3)
         renpy.restart_interaction()
-    
-    # jump beginning
 
-    
-    # label mainmenu:
-        # scene bg rainbow with pixellate  
-        # menu:
-        #     "Вступление":
-        #         jump beginning
-        #     "Выебал":
-        #         jump viee
-        #     "Test":
-        #         jump testik
+    # Меню для перескакивания на тестовые кейсы
+    label mainmenu:
+        scene bg rainbow with pixellate  
+        menu:
+            "Вступление":
+                jump beginning
+            # "Ви":
+            #     jump viee
+            # "Test":
+            #     jump testik
             # "Бедосяфон":
             #     jump bdsphone
             # "Болталовка":
             #     jump talk
             # "Тест":
             #     jump test
+            "Цвета":
+                jump colorgrade
 
 
 label beginning:
@@ -238,10 +239,8 @@ label beginning:
             menu:
                 " {fast}"
                 "Звучит достаточно интересно.":
-                    me "Интересно хуесно"
                     $ vjb_flag = True
                 "Просто какой-то бред":
-                    me "Хуйня какая-то"
                     $ vjb_flag = False
             jump after_vjb
 
@@ -386,23 +385,20 @@ label beginning:
         fle "Посмотрите-ка, а Геншин ты помнишь."
         fle "Если решишь остаться здесь, точно сойдёшь за своего."
         show fle w
-        label test:
-        # fle "Слушай, а какой цвет тебе больше нравится?" 
-        # $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
-        # $ temp_name = renpy.input("Хм, мой любимый цвет...", length=50, exclude=" 0123456789+=,.?!<>{{}[[]")
-        $ temp_name = renpy.input([fle.name, col.fle, "Слушай, а какой цвет тебе больше нравится?"], screen="myinput")
+            
         label colorgrade:
-            if temp_name.strip().lower() in good_colors:
+            $ temp_name = renpy.input([fle.name, col.fle, "Слушай, а какой цвет тебе больше нравится?"], screen="myinput")
+            $ temp_name = temp_name.strip().lower()
+            if temp_name in good_colors:
                 $ fle_points += 1
-                if temp_name.strip().lower() == "хуй" or temp_name.strip().lower() == "пизда":
+                if temp_name in good_colors[0:3]:
                     fle "Я тоже люблю бежевый."
-                fle "Good."
-            elif temp_name.strip().lower() in bad_colors:
+                # fle "Good."
+            elif temp_name in bad_colors:
                 $ fle_points -= 1
-                fle "Bad."
-            else:
-                $ fle_points -= 0
-                fle "Pohui."
+            elif temp_name in typo_colors:
+                "[temp_name.capitalize()]? Заикаешься что ли?"
+            
             # краснвй заикаишься чтоль?
         # fle "Окей, [temp_name]"
         label catordog:
