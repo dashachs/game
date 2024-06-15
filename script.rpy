@@ -153,7 +153,7 @@ label start:
         #     "Вступление":
         #         jump beginning
         #     "Выебал":
-        #         jump viebal
+        #         jump viee
         #     "Test":
         #         jump testik
             # "Бедосяфон":
@@ -193,10 +193,15 @@ label beginning:
         "Сперва это сильно меня пугает. Может быть меня огрели чем-нибудь по голове? Я спешно проверяю затылок, но следов травмы нет."
         "Нужно начать с чего-нибудь совсем простого. Например с имени. Да, точно. Начну с имени."
 
-        $ temp_name = renpy.input("Как меня зовут?..", length=32, exclude=" 0123456789+=,.?!<>{{}[[]")
-        $ temp_name = temp_name.strip()
-        if temp_name == "":
-            $ temp_name = "Я"
+        $ whats_my_name = "Как меня зовут?.."
+        label name:
+            $ temp_name = renpy.input(whats_my_name, length=32, exclude="0123456789+=,.?!<>{{}[[]")
+            $ temp_name = temp_name.strip()
+            if temp_name == "":
+                $ temp_name = "Я"
+            if temp_name.lower() == "коля":
+                $ whats_my_name = "Да нет, не Коля... Э-э-э, меня звали..." 
+                jump name
 
         $ me.name = temp_name
         # me "Ну, хорошо хоть имя свое не забыл. Больше ничего и не помню. А дальше-то что делать? (тут имя для примера, как будет выглядеть)"
@@ -477,7 +482,7 @@ label beginning:
 
 
         # define premium = "vi"
-        label viebal:
+        label viee:
             scene dock2 with dissolve 
             show vi mono at center with dissolve:
                 abitbigger
@@ -825,7 +830,7 @@ label talk:
 
     label ebir_comes:
         show vi at midright
-        vi "Hey there. I'm Vi, short for Viebal. Are you alone here?"
+        vi "Hey there. I'm Vi, short for viee. Are you alone here?"
         show bap at left with move
         show vi at right with move
         menu:
