@@ -774,7 +774,7 @@ label musor:
     jump end
 
 
-label talk:
+    label talk:
     scene dock1
     show bap at midright
     show fle at midleft:
