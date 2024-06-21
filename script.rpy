@@ -32,7 +32,7 @@ init:
         yalign 1.5
 
     transform midright:
-        xalign 0.80
+        xalign 0.78
         yalign 1.0
 
     transform bigger:
@@ -83,6 +83,8 @@ define slowdissolve = Dissolve(3)
 image dimmed = "#00000088" #hope this is half transparent (haven't tested)
 image full_black = "#000000ff" #
 image full_white = "#ffffffff" #
+
+define premium = False
 
 init python:
     class Colors:
@@ -143,15 +145,15 @@ label start:
         renpy.restart_interaction()
 
     # Меню для перескакивания на тестовые кейсы
-    # label mainmenu:
-    #     scene bg rainbow with pixellate  
-    #     menu:
-    #         "Вступление":
-    #             jump beginning
-    #         "Ви":
-    #             jump viee
-    #         "Test":
-    #             jump testik
+    label mainmenu:
+        scene bg rainbow with pixellate  
+        menu:
+            "Вступление":
+                jump beginning
+            "Ви":
+                jump viee
+            "Test":
+                jump testik
     #         "Бедосяфон":
     #             jump bdsphone
     #         "Болталовка":
@@ -469,6 +471,13 @@ label beginning:
 
         # define premium = "vi"
         label viee:
+            default p = "" if premium else "p"
+            image vi = "images/vi/vi [p].png"
+            image vi angry = "images/vi/vi [p]angry.png"
+            image vi cringe = "images/vi/vi [p]cringe.png"
+            image vi horny = "images/vi/vi [p]horny.png"
+            image vi shadow = "images/vi/vi [p]shadow.png"
+            image vi wow = "images/vi/vi [p]wow.png"
             scene dock2 with dissolve 
             show vi shadow at center with dissolve:
                 abitbigger
@@ -559,9 +568,17 @@ label beginning:
                 "Почему бы и нет? Мне правда интересно.":
                     $ vi_points += 1
             vi "хорошо."
+            # label testik:
+            # scene dock2
+            # show vi at center with dissolve:
+            #     abitbigger
             "Он придвигает к себе стул, разворачивает ко мне спинкой и, широко раскинув ноги, опускается на сидение."
             "Локти он укладывает на спинку."
             vi "ну давай, спрашивай."
+            window hide
+            show vi at midright with ease
+            pause
+            window show
             
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -583,6 +600,7 @@ label beginning:
             "(Бла-бла-бла, тут объяснения; за плакат с Гопарём +2, потому что его надо было заметить раньше, значит, мы внимательные)"
             "Кажется, я слышу теплоту, когда он рассказывает об этом."
             "Видимо, этот парень действительно нашел здесь свое место, и это как-то вдохновляет."
+            show vi at center with ease
             vi "слушай…"
             "Я не вижу лица, но слышу, как меняется голос. Становится тише. Приходится прислушаться, чтобы услышать."
             "Наверняка этот парень покраснел, когда говорил."
