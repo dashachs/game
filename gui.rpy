@@ -24,8 +24,11 @@ define config.check_conflicting_properties = True
 ##
 ## The colors of text in the interface.
 
+define gui.flymer_purple = '#895FC8'
+define gui.flymer_orange = '#FF7B00'
+
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#66cc00'
+define gui.accent_color = gui.flymer_purple
 
 ## The color used for a text button when it is neither selected nor hovered.
 define gui.idle_color = '#888888'
@@ -35,7 +38,8 @@ define gui.idle_color = '#888888'
 define gui.idle_small_color = '#aaaaaa'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = '#a3e066'
+define gui.hover_color = gui.flymer_orange
+# define gui.hover_color = '#a3e066'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
@@ -67,7 +71,7 @@ define gui.name_text_font = "fonts/ARIALBD.ttf"
 # define gui.name_text_font = "fonts/COMICSANSBOLD.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "DejaVuSans.ttf"
+define gui.interface_text_font = "fonts/COMICSANS.ttf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 33
@@ -76,7 +80,7 @@ define gui.text_size = 33
 define gui.name_text_size = 40
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 33
+define gui.interface_text_size = 36
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 36
@@ -85,7 +89,7 @@ define gui.label_text_size = 36
 define gui.notify_text_size = 24
 
 ## The size of the game's title.
-define gui.title_text_size = 75
+define gui.title_text_size = 50
 
 
 ## Main and Game Menus #########################################################
@@ -259,6 +263,7 @@ define config.thumbnail_height = 216
 ## The number of columns and rows in the grid of save slots.
 define gui.file_slot_cols = 3
 define gui.file_slot_rows = 2
+
 
 
 ## Positioning and Spacing #####################################################
