@@ -146,14 +146,14 @@ label start:
 
     # Меню для перескакивания на тестовые кейсы
     label mainmenu:
-        scene bg rainbow with pixellate  
-        menu:
-            "Вступление":
-                jump beginning
-            "Ви":
-                jump viee
-            "Test":
-                jump testik
+        # scene bg rainbow with pixellate  
+        # menu:
+        #     "Вступление":
+        #         jump beginning
+        #     "Ви":
+        #         jump viee
+        #     "Test":
+        #         jump testik
     #         "Бедосяфон":
     #             jump bdsphone
     #         "Болталовка":
