@@ -261,6 +261,33 @@ style choice_button is default:
 style choice_button_text is default:
     properties gui.text_properties("choice_button")
 
+## custom choise screen
+
+screen choice_story(items):
+    style_prefix "choice_story"
+
+    vbox:
+        at choice_menu_with_ease
+        for i in items:
+            textbutton i.caption action i.action
+
+style choice_story_vbox is vbox
+style choice_story_button is button
+style choice_story_button_text is button_text
+
+style choice_story_vbox:
+    xalign 0.1
+    ypos 0.2
+    yanchor 0.5
+
+    spacing gui.choice_story_spacing
+
+style choice_story_button is default:
+    properties gui.button_properties("choice_story_button")
+
+style choice_story_button_text is default:
+    properties gui.text_properties("choice_story_button")
+
 
 ## Quick Menu screen ###########################################################
 ##
@@ -1265,6 +1292,13 @@ transform delayed_blink(delay, cycle):
         pause (cycle - .4)
         repeat
 
+transform choice_menu_with_ease:
+    on show:
+        alpha 0
+        linear 0.5 alpha 1
+    # on hide:
+    #     alpha 1
+    #     linear 0.5 alpha 0
 
 style skip_frame is empty
 style skip_text is gui_text
